@@ -16,10 +16,13 @@ class Point extends Model
 
     /**
      * Scope to select geometry as GeoJSON
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder<static> $query
+     * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeWithGeoJson($query)
     {
-        return $query->select('*')
+        return $query->selectRaw('*')
             ->selectRaw('ST_AsGeoJSON(geom) as geojson');
     }
 
